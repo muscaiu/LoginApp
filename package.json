@@ -1,0 +1,16 @@
+{
+  "name": "login-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "mongoose": "^4.8.0",
+    "morgan": "^1.7.0"
+  }
+}
