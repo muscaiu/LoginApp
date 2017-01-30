@@ -9,7 +9,7 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save', function(next) {
     var user = this
-        //encrypting the pass before storing it to th    
+        //encrypting the pass before storing it to DB  
     bcrypt.hash(user.password, null, null, function(err, hash) {
         if (err) return next(err)
         user.password = hash
