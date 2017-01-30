@@ -3,15 +3,11 @@ var app = express()
 var port = process.env.PORT || 3000
 var morgan = require('morgan')
 var mongoose = require('mongoose')
-
-//User Model
-
+var User = require('./app/models/user')
+var bodyParser = require('body-parser')
 
 app.use(morgan('dev')) //morgan logs every server resqest
-
-app.get('/home', function(req, res) {
-    res.send('hello world')
-})
+app.use(bodyParser)
 
 mongoose.connect('mongodb://localhost:27017/loginapp', function(err) {
     if (err) {
@@ -19,6 +15,16 @@ mongoose.connect('mongodb://localhost:27017/loginapp', function(err) {
     } else {
         console.log('connected to Mongo');
     }
+})
+
+//http://127.0.0.1:3000/users
+app.post('/users', function(req, res) {
+    var user = new User()
+    user.username = req.body.username
+    user.password = req.body.password
+    user.email = req.body.email
+    user.save()
+    res.send('user created')
 })
 
 app.listen(port, function() {
