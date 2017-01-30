@@ -4,6 +4,9 @@ var port = process.env.PORT || 3000
 var morgan = require('morgan')
 var mongoose = require('mongoose')
 
+//User Model
+
+
 app.use(morgan('dev')) //morgan logs every server resqest
 
 app.get('/home', function(req, res) {
