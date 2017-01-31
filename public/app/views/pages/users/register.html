@@ -15,13 +15,19 @@
 </form>
 
 <br>
+<div ng-show="register.isLoading" class="jumbotron text-center">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading...</p>
+</div>
 
-<div class="row show-hide-message">
+<br>
+
+<div ng-show="register.successMsg" class="row show-hide-message">
     <div class="alert alert-success">{{ register.successMsg }}</div>
 </div>
 
 <br>
 
-<div class="row show-hide-message">
+<div ng-show="register.errorMsg" class="row show-hide-message">
     <div class="alert alert-danger">{{ register.errorMsg}}</div>
 </div>

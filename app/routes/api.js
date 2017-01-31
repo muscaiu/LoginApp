@@ -9,9 +9,9 @@ module.exports = function(router) {
         user.password = req.body.password
         user.email = req.body.email
 
-        if (req.body.username === null || req.body.username == '' ||
-            req.body.password === null || req.body.username == '' ||
-            req.body.email === null || req.body.email === '') {
+        if (req.body.username === null || req.body.username === undefined || req.body.username === '' ||
+            req.body.password === null || req.body.password === undefined || req.body.username === '' ||
+            req.body.email === null || req.body.email === undefined || req.body.email === '') {
             res.json({ success: false, message: 'Ensure username, email and password were provided' })
         } else {
             user.save(function(err) {
