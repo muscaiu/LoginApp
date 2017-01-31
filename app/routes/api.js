@@ -22,6 +22,8 @@ module.exports = function(router) {
                 }
             })
         }
+        console.log(req.body.username, req.body.password, req.body.email);
+
     })
     return router //return whatever the route is
 }

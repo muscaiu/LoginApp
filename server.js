@@ -5,9 +5,10 @@ var morgan = require('morgan')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var router = express.Router()
-    //use the router object with these routes ..like a function with (routes) as parameter i guess
-var appRoutes = require('./app/routes/api')(router)
 var path = require('path')
+
+mongoose.Promise = global.Promise; //deprecation warning goes before appRoutes
+var appRoutes = require('./app/routes/api')(router)
 
 app.use(morgan('dev')) //morgan logs every server resqest
 app.use(bodyParser.json()) //for parsing the json 
