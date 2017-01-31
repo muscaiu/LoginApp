@@ -1,6 +1,8 @@
 angular.module('userControllers', [])
 
 .controller('regCtrl', function() {
-    console.log('tesing reg controller');
+    this.regUser = function() {
+        console.log('testing new button');
 
+    }
 })
