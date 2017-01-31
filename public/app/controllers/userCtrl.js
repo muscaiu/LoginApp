@@ -1,26 +1,31 @@
 angular.module('userControllers', [])
 
-.controller('regCtrl', function($http, $location) {
+.controller('regCtrl', function($http, $location, $timeout) {
 
     var app = this;
 
     this.regUser = function(regData) {
         app.successMsg = false;
         app.errorMsg = false;
-        app.isLoading = false;
+        app.isLoading = true;
 
         $http.post('/api/users', this.regData).then(function(data) {
             console.log(data.data.success, data.data.message);
             if (data.data.success) {
-                app.isLoading = false
-                    //Create Success message
-                app.successMsg = data.data.message;
-                //Redirect To HomePage
-                $location.path('/')
+                //Create Success message
+                app.successMsg = data.data.message + '...Redirecting';
+                $timeout(function() {
+                    //Redirect To HomePage
+                    $location.path('/')
+                    app.isLoading = false
+                }, 2000)
+
             } else {
-                app.isLoading = false
-                    //Create error message
+                //Create error message
                 app.errorMsg = data.data.message;
+                $timeout(function() {
+                    app.isLoading = false
+                }, 2000)
             }
         })
     }

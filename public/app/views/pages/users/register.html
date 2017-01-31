@@ -12,13 +12,8 @@
     <input ng-model="register.regData.password" class="form-control" type="password" name="password" placeholder="please enter-password">
     <br>
     <button class="btn btn-primary" type="submit">Register</button>
+    <span ng-show="register.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
 </form>
-
-<br>
-<div ng-show="register.isLoading" class="jumbotron text-center">
-    <span class="glyphicon glyphicon-repeat spinner"></span>
-    <p>Loading...</p>
-</div>
 
 <br>
 
