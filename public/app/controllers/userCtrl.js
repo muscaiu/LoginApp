@@ -1,6 +1,6 @@
 angular.module('userControllers', [])
 
-.controller('regCtrl', function($http) {
+.controller('regCtrl', function($http, $location) {
 
     var app = this;
 
@@ -16,6 +16,7 @@ angular.module('userControllers', [])
                     //Create Success message
                 app.successMsg = data.data.message;
                 //Redirect To HomePage
+                $location.path('/')
             } else {
                 app.isLoading = false
                     //Create error message
