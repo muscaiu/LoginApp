@@ -24,13 +24,31 @@ module.exports = function(router) {
             })
         }
         console.log(req.body.username, req.body.password, req.body.email);
-
     })
 
     //USER LOGIN ROUTE
     //http://localhost:3000/api/authenticate
     router.post('/authenticate', function(req, res) {
-        res.send('testing new route')
+        console.log(req.body.username, req.body.password);
+
+        User.findOne({ username: req.body.username }).select('email username password').exec(function(err, user) {
+            if (err) throw err;
+
+            if (!user) {
+                res.json({ success: false, message: 'Could not authenticate user' })
+            } else if (user) {
+                if (req.body.password) {
+                    var validPassword = user.comparePassword(req.body.password)
+                } else {
+                    res.json({ success: false, message: 'No password provided' })
+                }
+                if (!validPassword) {
+                    res.json({ success: false, message: 'Could not authenticate password' })
+                } else {
+                    res.json({ success: true, message: 'User authenticated!' })
+                }
+            }
+        })
     })
 
     return router //return whatever the route is
