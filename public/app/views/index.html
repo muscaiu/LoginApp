@@ -10,10 +10,15 @@
     <meta name="author" content="">
 
     <title>Theme Template for Bootstrap</title>
+
+    <!--CDN Styles: Bootstrap, Font-Awesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Local Styles: style.css-->
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body ng-app="userApp" ng-controller="mainCtrl as main">
@@ -58,19 +63,27 @@
             <div ng-view></div>
         </div>
 
-
     </div>
-
+    <!--jQuery, Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Main Angular files-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
+    <!--Angular Config Routes-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
+
+    <!--Angular Controllers-->
     <script src="app/controllers/userCtrl.js"></script>
-    <script src="app/services/userServices.js"></script>
     <script src="app/controllers/mainCtrl.js"></script>
+
+    <!--Angular Services-->
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
 </body>
 
 </html>

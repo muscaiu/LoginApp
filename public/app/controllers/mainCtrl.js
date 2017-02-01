@@ -1,6 +1,6 @@
 angular.module('mainController', [])
 
 .controller('mainCtrl', function() {
-    console.log('ok');
+    console.log('main controller ok');
 
 })
