@@ -1,6 +1,7 @@
 var User = require('../models/user')
 
 module.exports = function(router) {
+    //USER REGISTRATION ROUTE
     //http://127.0.0.1:3000/users
     router.post('/users', function(req, res) {
         var user = new User()
@@ -25,5 +26,12 @@ module.exports = function(router) {
         console.log(req.body.username, req.body.password, req.body.email);
 
     })
+
+    //USER LOGIN ROUTE
+    //http://localhost:3000/api/authenticate
+    router.post('/authenticate', function(req, res) {
+        res.send('testing new route')
+    })
+
     return router //return whatever the route is
 }
