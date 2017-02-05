@@ -1,4 +1,6 @@
 var User = require('../models/user')
+var jwt = require('jsonwebtoken')
+var secret = 'harrypotter'
 
 module.exports = function(router) {
     //USER REGISTRATION ROUTE
@@ -45,7 +47,16 @@ module.exports = function(router) {
                 if (!validPassword) {
                     res.json({ success: false, message: 'Could not authenticate password' })
                 } else {
-                    res.json({ success: true, message: 'User authenticated!' })
+
+                    //create jwt token
+                    var token = jwt.sign({
+                        username: user.username,
+                        email: user.email
+                    }, secret, {
+                        expiresIn: '1h'
+                    })
+
+                    res.json({ success: true, message: 'User authenticated!', token: token })
                 }
             }
         })
@@ -53,3 +64,9 @@ module.exports = function(router) {
 
     return router //return whatever the route is
 }
+
+
+
+// jwt.sign({
+//     data: 'foobar'
+// }, 'secret', { expiresIn: '1h' });
