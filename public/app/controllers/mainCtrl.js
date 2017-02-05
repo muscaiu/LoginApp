@@ -2,6 +2,14 @@ angular.module('mainController', ['authServices'])
 
 .controller('mainCtrl', function(Auth, $timeout, $location) { //Auth from authServices
     var app = this
+
+    //Auth in authservices
+    if (Auth.isLoggedIn()) {
+        console.log('success, User is logged in ');
+    } else {
+        console.log('failure, User is NOT logged in ');
+    }
+
     this.doLogin = function(loginData) {
         app.successMsg = false;
         app.errorMsg = false;
