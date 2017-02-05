@@ -1,25 +1,25 @@
 <div class="page-header">
     <h3>User Login</h3>
 </div>
-<form ng-submit="register.regUser(regData)">
+<form ng-submit="main.doLogin(loginData)">
     <label>Username:</label>
-    <input ng-model="register.regData.username" class="form-control" type="text" name="username" placeholder="please enter username">
+    <input ng-model="main.loginData.username" class="form-control" type="text" name="username" placeholder="please enter username">
     <br>
     <label>Password</label>
-    <input ng-model="register.regData.password" class="form-control" type="password" name="password" placeholder="please enter-password">
+    <input ng-model="main.loginData.password" class="form-control" type="password" name="password" placeholder="please enter-password">
     <br>
     <button class="btn btn-primary" type="submit">Login</button>
-    <span ng-show="register.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
+    <span ng-show="main.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
 </form>
 
 <br>
 
-<div ng-show="register.successMsg" class="row show-hide-message">
-    <div class="alert alert-success">{{ register.successMsg }}</div>
+<div ng-show="main.successMsg" class="row show-hide-message">
+    <div class="alert alert-success">{{ main.successMsg }}</div>
 </div>
 
 <br>
 
-<div ng-show="register.errorMsg" class="row show-hide-message">
-    <div class="alert alert-danger">{{ register.errorMsg}}</div>
+<div ng-show="main.errorMsg" class="row show-hide-message">
+    <div class="alert alert-danger">{{ main.errorMsg}}</div>
 </div>

@@ -5,7 +5,7 @@ angular.module('userServices', [])
 
     //User.create(regData)
     userFactory.create = function(regData) {
-        return $http.post('/api/users', regData)
+        return $http.post('/api/users', regData) //regData from userCtrl
     }
     return userFactory;
 })
