@@ -35,4 +35,14 @@ angular.module('mainController', ['authServices'])
             }
         })
     }
+
+    this.logout = function() {
+        Auth.logout()
+        $location.path('/logout')
+        $timeout(function() {
+            //Redirect To logout
+            $location.path('/logout')
+            app.isLoading = false
+        }, 2000)
+    }
 })

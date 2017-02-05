@@ -22,6 +22,11 @@ angular.module('authServices', [])
         }
     }
 
+    //Auth.logout()
+    authFactory.logout = function() {
+        AuthToken.setToken()
+    }
+
     return authFactory;
 })
 
@@ -30,7 +35,11 @@ angular.module('authServices', [])
 
     //AuthToken.setToken
     authTokenFactory.setToken = function(token) {
-        $window.localStorage.setItem('token', token)
+        if (token) {
+            $window.localStorage.setItem('token', token)
+        } else {
+            $window.localStorage.removeItem('token')
+        }
     }
 
     //AuthToken.getToken
