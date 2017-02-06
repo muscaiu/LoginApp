@@ -143,3 +143,7 @@ header .navbar {
         -moz-transform: rotate(360deg);
     }
 }
+
+.ng-scope {
+    margin-top: 30px
+}

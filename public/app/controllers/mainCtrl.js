@@ -62,7 +62,7 @@ angular.module('mainController', ['authServices', 'userServices'])
             $('#myModal').modal({ backdrop: "static" }) //can't click on background
             $timeout(function() {
                 Auth.logout();
-                $location.path('/');
+                $location.path('/login');
                 hideModal();
                 $route.reload();
             }, 2000);
@@ -110,7 +110,7 @@ angular.module('mainController', ['authServices', 'userServices'])
 
         //Auth in authservices
         if (Auth.isLoggedIn()) {
-            console.log('success, User is logged in ');
+            //console.log('success, User is logged in ');
 
             app.isLoggedIn = true;
 
@@ -140,7 +140,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                 app.successMsg = data.data.message + '...Redirecting';
                 $timeout(function() {
                     //Redirect To HomePage
-                    $location.path('/about')
+                    $location.path('/')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;
