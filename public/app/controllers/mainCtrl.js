@@ -92,7 +92,9 @@ angular.module('mainController', ['authServices', 'userServices'])
     app.endSession = function() {
         app.choiceMade = false;
         hideModal();
-        console.log('session has been ened');
+        $timeout(function() {
+                showModal(2)
+            }, 1000) //1000 timeout between popop modals
     }
 
     var hideModal = function() {
@@ -119,7 +121,7 @@ angular.module('mainController', ['authServices', 'userServices'])
         } else {
             //console.log('failure, User is NOT logged in ');
             app.isLoggedIn = false;
-            app.username = '';
+            app.username = null;
             app.loadme = true;
         }
     })

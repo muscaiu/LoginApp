@@ -53,7 +53,7 @@ module.exports = function(router) {
                         username: user.username,
                         email: user.email
                     }, secret, {
-                        expiresIn: '25s'
+                        expiresIn: '1m'
                     })
 
                     res.json({ success: true, message: 'User authenticated!', token: token })
