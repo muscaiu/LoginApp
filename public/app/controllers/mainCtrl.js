@@ -1,13 +1,16 @@
 angular.module('mainController', ['authServices'])
 
 .controller('mainCtrl', function(Auth, $timeout, $location, $rootScope) { //Auth from authServices
-    var app = this
+    var app = this;
 
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
         //Auth in authservices
         if (Auth.isLoggedIn()) {
             console.log('success, User is logged in ');
+
+            app.isLoggedIn = true;
+
             Auth.getUser().then(function(data) {
                 console.log(data.data.username);
                 //to accest username from the front-end
@@ -16,6 +19,7 @@ angular.module('mainController', ['authServices'])
             })
         } else {
             console.log('failure, User is NOT logged in ');
+            app.isLoggedIn = false;
             app.username = '';
         }
         console.log('new route');
