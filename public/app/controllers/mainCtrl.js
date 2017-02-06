@@ -34,6 +34,8 @@ angular.module('mainController', ['authServices'])
                     //Redirect To HomePage
                     $location.path('/about')
                     app.isLoading = false
+                    app.loginData = '';
+                    app.successMsg = false;
                 }, 2000)
 
             } else {
