@@ -29,6 +29,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
         .when('/tabella', {
             templateUrl: 'app/views/pages/tableData/tabella.html',
+            controller: 'interviewCtrl',
+            controllerAs: 'interview',
             authenticated: true
         })
         .when('/tabella/interview', {

@@ -1,4 +1,5 @@
 var User = require('../models/user')
+var Interview = require('../models/interview')
 var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 
@@ -106,26 +107,29 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
-        //var user = new User()
-        console.log(req.body);
+        var interview = new Interview()
+            // console.log(req.body);
 
-        // user.username = req.body.username
-        // user.password = req.body.password
-        // user.email = req.body.email
+        interview.nomecognome = req.body.nomecognome
+        interview.sesso = req.body.sesso
+        interview.email = req.body.email
 
-        // if (req.body.username === null || req.body.username === undefined || req.body.username === '' ||
-        //     req.body.password === null || req.body.password === undefined || req.body.username === '' ||
-        //     req.body.email === null || req.body.email === undefined || req.body.email === '') {
-        //     res.json({ success: false, message: 'Ensure username, email and password were provided' })
-        // } else {
-        //     user.save(function(err) {
-        //         if (err) { //if user exists in the db or some other error
-        //             res.json({ success: false, message: 'Username or Email already exists' })
-        //         } else {
-        //             res.json({ success: true, message: 'user created' })
-        //         }
-        //     })
-        // }
+        console.log(interview.nomecognome, interview.sesso, interview.email);
+
+
+        if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
+            req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
+            req.body.email === null || req.body.email === undefined || req.body.email === '') {
+            res.json({ success: false, message: 'Empty fields' })
+        } else {
+            interview.save(function(err) {
+                if (err) { //if user exists in the db or some other error
+                    res.json({ success: false, message: 'exists' })
+                } else {
+                    res.json({ success: true, message: 'created' })
+                }
+            })
+        }
     })
 
     return router //return whatever the route is
