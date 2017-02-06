@@ -23,23 +23,30 @@ angular.module('mainController', ['authServices'])
                     }
                     var expireTime = self.parseJwt(token);
                     var timeStamp = Math.floor(Date.now() / 1000);
-                    console.log(expireTime.exp);
-                    console.log(timeStamp);
+                    //console.log(expireTime.exp);
+                    //console.log(timeStamp);
                     var timeCheck = expireTime.exp - timeStamp;
                     console.log('timecheck', timeCheck);
                     if (timeCheck <= 0) {
                         console.log('token has expired');
+                        showModal()
                         $interval.cancel(interval) //cancel checking when the token is expired
                     } else {
                         console.log('token not yet expired');
                     }
                 }
                 //console.log(token);
-            }, 30000)
+            }, 2000)
         }
     }
 
     app.checkSession();
+
+    var showModal = function() {
+        app.modalHeader = 'Timeout Warning'
+        app.modalBody = 'Your session will expire in 5 minutes. Would you like to renew your session?'
+        $('#myModal').modal({ backdrop: "static" })
+    }
 
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
