@@ -1,6 +1,6 @@
-angular.module('mainController', ['authServices'])
+angular.module('mainController', ['authServices', 'userServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval, $route) { //Auth from authServices
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;
 
     app.loadme = false;
@@ -27,7 +27,7 @@ angular.module('mainController', ['authServices'])
                     //console.log(timeStamp);
                     var timeCheck = expireTime.exp - timeStamp;
                     console.log('timecheck', timeCheck);
-                    if (timeCheck <= 0) {
+                    if (timeCheck <= 25) {
                         console.log('token has expired');
                         showModal(1) //option 1 
                         $interval.cancel(interval) //cancel checking when the token is expired
@@ -36,7 +36,7 @@ angular.module('mainController', ['authServices'])
                     }
                 }
                 //console.log(token);
-            }, 10000)
+            }, 2000)
         }
     }
 
@@ -68,13 +68,23 @@ angular.module('mainController', ['authServices'])
         $timeout(function() {
             if (!app.choiceMade) {
                 hideModal();
-                console.log('LOGGED OUT!!');
             }
         }, 5000)
     }
 
     app.renewSession = function() {
+
         app.choiceMade = true;
+
+        User.renewSession(app.username).then(function(data) {
+            if (data.data.success) {
+                AuthToken.setToken(data.data.token); //reset the token
+                app.checkSession()
+            } else {
+                app.modalBody = data.data.message;
+            }
+        });
+
         hideModal();
         console.log('session has been renewed');
     }

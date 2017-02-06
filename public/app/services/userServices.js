@@ -7,5 +7,11 @@ angular.module('userServices', [])
     userFactory.create = function(regData) {
         return $http.post('/api/users', regData) //regData from userCtrl
     }
+
+    //User.renewSession(username)
+    userFactory.renewSession = function(username) {
+        return $http.get('/api/renewToken/' + username)
+    }
+
     return userFactory;
 })

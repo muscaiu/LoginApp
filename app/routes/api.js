@@ -53,7 +53,7 @@ module.exports = function(router) {
                         username: user.username,
                         email: user.email
                     }, secret, {
-                        expiresIn: '1h'
+                        expiresIn: '25s'
                     })
 
                     res.json({ success: true, message: 'User authenticated!', token: token })
@@ -62,7 +62,7 @@ module.exports = function(router) {
         })
     })
 
-    //middleware
+    //middleware (EVERYTHING AFTER THIS REQUIRE THE USER TO BE LOGGED IN)
     router.use(function(req, res, next) {
         var token = req.body.token || req.body.query || req.headers['x-access-token']
         if (token) {
@@ -83,6 +83,25 @@ module.exports = function(router) {
 
     router.post('/me', function(req, res) {
         res.send(req.decoded)
+    })
+
+    router.get('renewToken/:username', function(req, res) {
+        User.find({ username: req.params.username }).select().exec(function(err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: 'No user was found' })
+            } else {
+                //create jwt token
+                var newToken = jwt.sign({
+                    username: user.username,
+                    email: user.email
+                }, secret, {
+                    expiresIn: '24h'
+                })
+
+                res.json({ success: true, token: newToken })
+            }
+        });
     })
 
     return router //return whatever the route is
