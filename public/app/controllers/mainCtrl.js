@@ -1,19 +1,24 @@
 angular.module('mainController', ['authServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location) { //Auth from authServices
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope) { //Auth from authServices
     var app = this
 
-    //Auth in authservices
-    if (Auth.isLoggedIn()) {
-        console.log('success, User is logged in ');
-        Auth.getUser().then(function(data) {
-            console.log(data.data.username);
-            //to accest username from the front-end
-            app.username = data.data.username
-        })
-    } else {
-        console.log('failure, User is NOT logged in ');
-    }
+    //$rootScope.$on('$viewContentLoaded', function() {
+    $rootScope.$on('$routeChangeStart', function() {
+        //Auth in authservices
+        if (Auth.isLoggedIn()) {
+            console.log('success, User is logged in ');
+            Auth.getUser().then(function(data) {
+                console.log(data.data.username);
+                //to accest username from the front-end
+                app.username = data.data.username
+            })
+        } else {
+            console.log('failure, User is NOT logged in ');
+            app.username = '';
+        }
+        console.log('new route');
+    })
 
     this.doLogin = function(loginData) {
         app.successMsg = false;
