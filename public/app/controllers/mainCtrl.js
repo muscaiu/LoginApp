@@ -8,35 +8,37 @@ angular.module('mainController', ['authServices', 'userServices'])
     app.checkSession = function() {
         if (Auth.isLoggedIn()) {
             app.checkingsession = true;
-            var interval = $interval(function() {
-                //console.log('testing if login token is expired every 10 sec');
-                var token = $window.localStorage.getItem('token')
-                if (token === null) {
-                    $interval.cancel(interval) //cancel checking when the token is expired
-                } else {
-                    //converts the token time to timestamp so we can compare it to localtime
-                    //so we can determine how much time is left on the token
-                    self.parseJwt = function(token) {
-                        var base64Url = token.split('.')[1];
-                        var base64 = base64Url.replace('-', '+').replace('_', '/');
-                        return JSON.parse($window.atob(base64));
-                    }
-                    var expireTime = self.parseJwt(token);
-                    var timeStamp = Math.floor(Date.now() / 1000);
-                    //console.log(expireTime.exp);
-                    //console.log(timeStamp);
-                    var timeCheck = expireTime.exp - timeStamp;
-                    console.log('timecheck', timeCheck);
-                    if (timeCheck <= 25) {
-                        console.log('token has expired');
-                        showModal(1) //option 1 
-                        $interval.cancel(interval) //cancel checking when the token is expired
-                    } else {
-                        console.log('token not yet expired');
-                    }
-                }
-                //console.log(token);
-            }, 2000)
+
+            //THIS PART WITH SOME authServices part is for token expire
+            // var interval = $interval(function() {
+            //     //console.log('testing if login token is expired every 10 sec');
+            //     var token = $window.localStorage.getItem('token')
+            //     if (token === null) {
+            //         $interval.cancel(interval) //cancel checking when the token is expired
+            //     } else {
+            //         //converts the token time to timestamp so we can compare it to localtime
+            //         //so we can determine how much time is left on the token
+            //         self.parseJwt = function(token) {
+            //             var base64Url = token.split('.')[1];
+            //             var base64 = base64Url.replace('-', '+').replace('_', '/');
+            //             return JSON.parse($window.atob(base64));
+            //         }
+            //         var expireTime = self.parseJwt(token);
+            //         var timeStamp = Math.floor(Date.now() / 1000);
+            //         //console.log(expireTime.exp);
+            //         //console.log(timeStamp);
+            //         var timeCheck = expireTime.exp - timeStamp;
+            //         console.log('timecheck', timeCheck);
+            //         if (timeCheck <= 25) {
+            //             console.log('token has expired');
+            //             showModal(1) //option 1 
+            //             $interval.cancel(interval) //cancel checking when the token is expired
+            //         } else {
+            //             console.log('token not yet expired');
+            //         }
+            //     }
+            //     //console.log(token);
+            // }, 2000)
         }
     }
 
@@ -140,7 +142,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                     //Redirect To HomePage
                     $location.path('/about')
                     app.isLoading = false
-                    app.loginData = '';
+                    app.loginData = null;
                     app.successMsg = false;
                     app.checkSession();
                 }, 2000)
