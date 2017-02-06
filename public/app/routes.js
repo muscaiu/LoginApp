@@ -31,10 +31,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/tableData/tabella.html',
             authenticated: true
         })
-        .when('/tabella/add', {
-            templateUrl: 'app/views/pages/tableData/addData.html',
-            controller: 'dataCtrl',
-            controllerAs: 'data',
+        .when('/tabella/interview', {
+            templateUrl: 'app/views/pages/tableData/interview.html',
+            controller: 'interviewCtrl',
+            controllerAs: 'interview',
             authenticated: true
         })
         .otherwise({ redirectTo: '/' });

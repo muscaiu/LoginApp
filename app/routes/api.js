@@ -104,8 +104,8 @@ module.exports = function(router) {
         });
     })
 
-    //http://127.0.0.1:3000/api/insertData
-    router.post('/insertData', function(req, res) {
+    //http://127.0.0.1:3000/api/interview
+    router.post('/interview', function(req, res) {
         //var user = new User()
         console.log(req.body);
 
