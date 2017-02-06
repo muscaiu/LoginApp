@@ -28,9 +28,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
             authenticated: true
         })
         .when('/tabella', {
-            templateUrl: 'app/views/pages/tabella.html',
+            templateUrl: 'app/views/pages/tableData/tabella.html',
             controller: 'dataCtrl',
             controllerAs: 'data',
+            authenticated: true
+        })
+        .when('/tabella/add', {
+            templateUrl: 'app/views/pages/tableData/addData.html',
             authenticated: true
         })
         .otherwise({ redirectTo: '/' });
