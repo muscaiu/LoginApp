@@ -134,7 +134,7 @@ angular.module('mainController', ['authServices', 'userServices'])
         app.isLoading = true;
 
         Auth.login(app.loginData).then(function(data) {
-            console.log(data.data.success, data.data.message);
+            //console.log(data.data.success, data.data.message);
             if (data.data.success) {
                 //Create Success message
                 app.successMsg = data.data.message + '...Redirecting';

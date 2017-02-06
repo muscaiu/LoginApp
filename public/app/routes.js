@@ -27,6 +27,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/users/profile.html',
             authenticated: true
         })
+        .when('/tabella', {
+            templateUrl: 'app/views/pages/tabella.html',
+            authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode({
