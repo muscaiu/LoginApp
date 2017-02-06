@@ -22,6 +22,15 @@ angular.module('authServices', [])
         }
     }
 
+    //Auth.getUser() in mainctrl
+    authFactory.getUser = function() {
+        if (AuthToken.getToken()) {
+            return $http.post('/api/me')
+        } else {
+            $q.reject({ message: 'User has no token' })
+        }
+    }
+
     //Auth.logout()
     authFactory.logout = function() {
         AuthToken.setToken()

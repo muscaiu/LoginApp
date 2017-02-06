@@ -62,6 +62,29 @@ module.exports = function(router) {
         })
     })
 
+    //middleware
+    router.use(function(req, res, next) {
+        var token = req.body.token || req.body.query || req.headers['x-access-token']
+        if (token) {
+            //verify token
+            jwt.verify(token, secret, function(err, decoded) {
+                if (err) { //if token expired
+                    res.json({ success: false, message: 'Token Invalid' })
+                } else {
+                    //takes the token, verifies it with the secret and send it back decoded
+                    req.decoded = decoded;
+                    next();
+                }
+            })
+        } else {
+            res.json({ success: false, message: 'No token provided' })
+        }
+    })
+
+    router.post('/me', function(req, res) {
+        res.send(req.decoded)
+    })
+
     return router //return whatever the route is
 }
 
@@ -70,3 +93,8 @@ module.exports = function(router) {
 // jwt.sign({
 //     data: 'foobar'
 // }, 'secret', { expiresIn: '1h' });
+
+// // verify a token symmetric
+// jwt.verify(token, 'shhhhh', function(err, decoded) {
+//   console.log(decoded.foo) // bar
+// });
