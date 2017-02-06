@@ -14,19 +14,17 @@ angular.module('mainController', ['authServices'])
             app.isLoggedIn = true;
 
             Auth.getUser().then(function(data) {
-                console.log(data.data.username);
                 //to accest username from the front-end
                 app.username = data.data.username
                 app.useremail = data.data.email
                 app.loadme = true;
             })
         } else {
-            console.log('failure, User is NOT logged in ');
+            //console.log('failure, User is NOT logged in ');
             app.isLoggedIn = false;
             app.username = '';
             app.loadme = true;
         }
-        console.log('new route');
     })
 
     this.doLogin = function(loginData) {
