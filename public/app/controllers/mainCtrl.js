@@ -12,6 +12,7 @@ angular.module('mainController', ['authServices'])
                 console.log(data.data.username);
                 //to accest username from the front-end
                 app.username = data.data.username
+                app.useremail = data.data.email
             })
         } else {
             console.log('failure, User is NOT logged in ');
