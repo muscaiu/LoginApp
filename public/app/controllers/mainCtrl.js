@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices'])
 
-.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval) { //Auth from authServices
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $interval, $route) { //Auth from authServices
     var app = this;
 
     app.loadme = false;
@@ -9,7 +9,7 @@ angular.module('mainController', ['authServices'])
         if (Auth.isLoggedIn()) {
             app.checkingsession = true;
             var interval = $interval(function() {
-                //console.log('testing if login token is expired every 5 sec');
+                //console.log('testing if login token is expired every 10 sec');
                 var token = $window.localStorage.getItem('token')
                 if (token === null) {
                     $interval.cancel(interval) //cancel checking when the token is expired
@@ -29,23 +29,64 @@ angular.module('mainController', ['authServices'])
                     console.log('timecheck', timeCheck);
                     if (timeCheck <= 0) {
                         console.log('token has expired');
-                        showModal()
+                        showModal(1) //option 1 
                         $interval.cancel(interval) //cancel checking when the token is expired
                     } else {
                         console.log('token not yet expired');
                     }
                 }
                 //console.log(token);
-            }, 2000)
+            }, 10000)
         }
     }
 
     app.checkSession();
 
-    var showModal = function() {
-        app.modalHeader = 'Timeout Warning'
-        app.modalBody = 'Your session will expire in 5 minutes. Would you like to renew your session?'
-        $('#myModal').modal({ backdrop: "static" })
+    var showModal = function(option) {
+        app.choiceMade = false;
+        app.modalHeader = undefined;
+        app.modalBody = undefined;
+        app.hideButton = false;
+
+        if (option === 1) {
+            app.modalHeader = 'Timeout Warning'
+            app.modalBody = 'Your session will expire in 5 minutes. Would you like to renew your session? You have 5 sec!'
+            $('#myModal').modal({ backdrop: "static" }) //can't click on background
+
+        } else if (option === 2) {
+            //logout portion
+            app.hideButton = true;
+            app.modalHeader = 'Logging Out';
+            $('#myModal').modal({ backdrop: "static" }) //can't click on background
+            $timeout(function() {
+                Auth.logout();
+                $location.path('/');
+                hideModal();
+                $route.reload();
+            }, 2000);
+        }
+        $timeout(function() {
+            if (!app.choiceMade) {
+                hideModal();
+                console.log('LOGGED OUT!!');
+            }
+        }, 5000)
+    }
+
+    app.renewSession = function() {
+        app.choiceMade = true;
+        hideModal();
+        console.log('session has been renewed');
+    }
+
+    app.endSession = function() {
+        app.choiceMade = false;
+        hideModal();
+        console.log('session has been ened');
+    }
+
+    var hideModal = function() {
+        $('#myModal').modal('hide');
     }
 
     //$rootScope.$on('$viewContentLoaded', function() {
@@ -103,12 +144,6 @@ angular.module('mainController', ['authServices'])
     }
 
     this.logout = function() {
-        Auth.logout()
-        $location.path('/logout')
-        $timeout(function() {
-            //Redirect To logout
-            $location.path('/logout')
-            app.isLoading = false
-        }, 2000)
+        showModal(2)
     }
 })

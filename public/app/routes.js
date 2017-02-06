@@ -49,7 +49,7 @@ app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location
             //console.log('does not need to be auth');
             if (Auth.isLoggedIn()) {
                 event.preventDefault();
-                $location.path('/about')
+                // $location.path('/about')
             }
 
         }
