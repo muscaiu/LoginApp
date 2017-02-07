@@ -3,15 +3,15 @@ angular.module('interviewServices', [])
 .factory('Interview', function($http) {
     interviewFactory = {};
 
-    //Interview.create(newInterview)
-    interviewFactory.create = function(newInterview) {
-        return $http.post('/api/interview', newInterview).then(function(data) {
-            console.log(data.data.token);
-        })
+    interviewFactory.getinterviews = function() {
+        return $http.get('/api/getinterviews')
     }
 
-    interviewFactory.getInterviews = function() {
-        return $http.get('/api/getinterviews')
+    //Interview.create(newInterview)
+    interviewFactory.create = function(obj) {
+        return $http.post('/api/interview', obj).then(function(response) {
+            console.log(response.data.success);
+        })
     }
 
     return interviewFactory;

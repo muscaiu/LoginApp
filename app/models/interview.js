@@ -12,7 +12,8 @@ var InterviewSchema = new Schema({
     note: { type: String },
     esitocolloquio: { type: String },
     sito: { type: String },
-    email: { type: String }
+    email: { type: String },
+    username: { type: String }
 })
 
 // UserSchema.pre('save', function(next) {

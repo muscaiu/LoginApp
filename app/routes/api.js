@@ -108,20 +108,21 @@ module.exports = function(router) {
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
         var interview = new Interview()
-            // console.log(req.body);
+        console.log(req.body);
 
-        interview.nr = req.body.nr
-        interview.dataapplicazione = req.body.dataapplicazione
-        interview.nomecognome = req.body.nomecognome
-        interview.sesso = req.body.sesso
-        interview.eta = req.body.eta
-        interview.tel = req.body.tel
-        interview.esito1 = req.body.esito1
-        interview.esito2 = req.body.esito2
-        interview.note = req.body.note
-        interview.esitocolloquio = req.body.esitocolloquio
-        interview.sito = req.body.sito
-        interview.email = req.body.email
+        interview.nr = req.body.newInterview.nr
+        interview.dataapplicazione = req.body.newInterview.dataapplicazione
+        interview.nomecognome = req.body.newInterview.nomecognome
+        interview.sesso = req.body.newInterview.sesso
+        interview.eta = req.body.newInterview.eta
+        interview.tel = req.body.newInterview.tel
+        interview.esito1 = req.body.newInterview.esito1
+        interview.esito2 = req.body.newInterview.esito2
+        interview.note = req.body.newInterview.note
+        interview.esitocolloquio = req.body.newInterview.esitocolloquio
+        interview.sito = req.body.newInterview.sito
+        interview.email = req.body.newInterview.email
+        interview.username = req.body.username
 
         // if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
         //     req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
