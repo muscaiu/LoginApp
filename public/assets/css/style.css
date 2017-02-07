@@ -151,3 +151,7 @@ header .navbar {
 table {
     cursor: pointer;
 }
+
+.selected {
+    background-color: #F0F0F0;
+}

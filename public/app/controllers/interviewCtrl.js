@@ -1,6 +1,6 @@
 angular.module('interviewController', ['interviewServices', 'authServices'])
 
-.controller('interviewCtrl', function($scope, $http, Interview, Auth) {
+.controller('interviewCtrl', function($scope, $http, $location, Interview, Auth) {
 
     var app = this;
 
@@ -23,8 +23,12 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
         Interview.create({ newInterview: app.newInterview, username: app.username })
     }
 
+    //highlight cliecked row using ng-class="{selected : item._id === idSelectedRow._id}"
+    $scope.idSelectedRow = null;
     $scope.clickedItem = function(item) {
-        console.log(item._id);
+        $scope.idSelectedRow = item;
+        //$location.path('/tabella/edit');
     }
+
 
 })

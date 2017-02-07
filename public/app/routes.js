@@ -39,6 +39,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
             controllerAs: 'interview',
             authenticated: true
         })
+        .when('/tabella/edit', {
+            templateUrl: 'app/views/pages/tableData/editinterview.html',
+            controller: 'interviewCtrl',
+            controllerAs: 'interview',
+            authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode({

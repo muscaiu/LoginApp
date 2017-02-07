@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in interview.interviewsList" ng-click="clickedItem(item)">
+        <tr ng-repeat="item in interview.interviewsList" ng-click="clickedItem(item)" ng-class="{selected : item._id === idSelectedRow._id}">
             <td>{{ item.nr }}</td>
             <td>{{ item.dataapplicazione }}</td>
             <td>{{ item.nomecognome }}</td>
