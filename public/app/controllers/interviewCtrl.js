@@ -1,6 +1,6 @@
 angular.module('interviewController', ['interviewServices', 'authServices'])
 
-.controller('interviewCtrl', function($http, Interview, Auth) {
+.controller('interviewCtrl', function($scope, $http, Interview, Auth) {
 
     var app = this;
 
@@ -23,5 +23,8 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
         Interview.create({ newInterview: app.newInterview, username: app.username })
     }
 
+    $scope.clickedItem = function(item) {
+        console.log(item._id);
+    }
 
 })

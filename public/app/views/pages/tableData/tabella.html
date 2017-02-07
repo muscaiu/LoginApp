@@ -1,5 +1,5 @@
 <a href="/tabella/interview" class="btn btn-info">Add</a>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Nr</th>
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in interview.interviewsList">
+        <tr ng-repeat="item in interview.interviewsList" ng-click="clickedItem(item)">
             <td>{{ item.nr }}</td>
             <td>{{ item.dataapplicazione }}</td>
             <td>{{ item.nomecognome }}</td>
