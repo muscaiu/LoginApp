@@ -108,7 +108,6 @@ module.exports = function(router) {
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
         var interview = new Interview()
-        console.log(req.body);
 
         interview.nr = req.body.newInterview.nr
         interview.dataapplicazione = req.body.newInterview.dataapplicazione

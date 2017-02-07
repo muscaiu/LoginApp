@@ -16,18 +16,11 @@ var InterviewSchema = new Schema({
     username: { type: String }
 })
 
-// UserSchema.pre('save', function(next) {
-//     var user = this
-//         //encrypting the pass before storing it to DB  
-//     bcrypt.hash(user.password, null, null, function(err, hash) {
-//         if (err) return next(err)
-//         user.password = hash
-//         next()
-//     })
+// InterviewSchema.pre('save', function(next) {
+//     var interview = this
+//     console.log(interview.nr);
+//     next()
 // })
 
-// UserSchema.methods.comparePassword = function(password) {
-//     return bcrypt.compareSync(password, this.password) //compare the passwords
-// }
 
 module.exports = mongoose.model('Interview', InterviewSchema)

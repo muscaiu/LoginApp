@@ -13,7 +13,7 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
     Auth.getUser().then(function(data) {
         //to accest username from the front-end
         app.username = data.data.username
-        console.log(app.username);
+            //console.log(app.username);
 
     })
 
@@ -30,5 +30,8 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
         //$location.path('/tabella/edit');
     }
 
+    $scope.myExpression = function(shop) {
+        return shop.id !== $scope.current.id;
+    };
 
 })
