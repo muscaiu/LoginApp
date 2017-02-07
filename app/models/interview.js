@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var InterviewSchema = new Schema({
-    nr: { type: Number },
     dataapplicazione: { type: String },
     nomecognome: { type: String },
     sesso: { type: String, uppercase: true },

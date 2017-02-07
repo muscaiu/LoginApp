@@ -31,6 +31,6 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
     }
 
     //sorting defaults
-    $scope.sortType = 'nomecognome'; // set the default sort type
+    $scope.sortType = 'dataapplicazione'; // set the default sort type
     $scope.sortReverse = false; // set the default sort order
 })
