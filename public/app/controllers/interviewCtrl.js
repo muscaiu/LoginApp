@@ -30,8 +30,7 @@ angular.module('interviewController', ['interviewServices', 'authServices'])
         //$location.path('/tabella/edit');
     }
 
-    $scope.myExpression = function(shop) {
-        return shop.id !== $scope.current.id;
-    };
-
+    //sorting defaults
+    $scope.sortType = 'nomecognome'; // set the default sort type
+    $scope.sortReverse = false; // set the default sort order
 })

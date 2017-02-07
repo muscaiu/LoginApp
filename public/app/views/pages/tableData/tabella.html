@@ -3,32 +3,103 @@
     <div class="col-xs-8">
         <input ng-model="searchInterview" class="form-control" placeholder="Search" type="text">
     </div>
-
-
 </div>
+
+<!--<div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ searchFish }}</p>
+</div>-->
+
 <table class="table table-hover">
     <thead>
         <tr>
             <th>Nr</th>
             <th>Data applicazione</th>
-            <th>Nome e cognome</th>
-            <th>Sesso</th>
-            <th>Eta'</th>
-            <th>Numero di telefono</th>
-            <th>Esito 1 chiamata</th>
-            <th>Esito 2 chiamata</th>
-            <th>Note</th>
-            <th>Esito colloquio</th>
-            <th>Sito</th>
-            <th>E-mail</th>
-            <th>Posted by</th>
+            <th>
+                <a href="#" ng-click="sortType = 'nomecognome'; sortReverse = !sortReverse">
+                    Nome e cognome
+                <span ng-show="sortType == 'nomecognome' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'nomecognome' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'sesso'; sortReverse = !sortReverse">
+                    Sesso
+                <span ng-show="sortType == 'sesso' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sesso' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'eta'; sortReverse = !sortReverse">
+                    Eta'
+                <span ng-show="sortType == 'eta' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'eta' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'tel'; sortReverse = !sortReverse">
+                    Numero di telefono
+                <span ng-show="sortType == 'tel' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'tel' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esito1'; sortReverse = !sortReverse">
+                    Esito 1 chiamata
+                <span ng-show="sortType == 'esito1' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esito1' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esito2'; sortReverse = !sortReverse">
+                    Esito 2 chiamata
+                <span ng-show="sortType == 'esito2' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esito2' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'note'; sortReverse = !sortReverse">
+                    Note
+                <span ng-show="sortType == 'note' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'note' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esitocolloquio'; sortReverse = !sortReverse">
+                    Esito colloquio
+                <span ng-show="sortType == 'esitocolloquio' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esitocolloquio' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'sito'; sortReverse = !sortReverse">
+                    Sito
+                <span ng-show="sortType == 'sito' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sito' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                    E-mail
+                <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+                    Posted by
+                <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="item in interview.interviewsList | filter:searchInterview" ng-click="clickedItem(item)" ng-class="{selected : item._id === idSelectedRow._id}">
+        <tr ng-repeat="item in interview.interviewsList | orderBy:sortType:sortReverse | filter:searchInterview" ng-click="clickedItem(item)" ng-class="{selected : item._id === idSelectedRow._id}">
             <td>{{ item.nr }}</td>
             <td>{{ item.dataapplicazione }}</td>
-            <td>{{ item.nomecognome }}</td>
+            <td>{{ item.sesso }}</td>
             <td>{{ item.sesso }}</td>
             <td>{{ item.eta }}</td>
             <td>{{ item.tel }}</td>
