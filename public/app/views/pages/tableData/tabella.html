@@ -18,19 +18,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
+        <tr ng-repeat="item in interview.interviewsList">
+            <td>{{ item.nr }}</td>
+            <td>{{ item.dataapplicazione }}</td>
+            <td>{{ item.nomecognome }}</td>
+            <td>{{ item.sesso }}</td>
+            <td>{{ item.eta }}</td>
+            <td>{{ item.tel }}</td>
+            <td>{{ item.esito1 }}</td>
+            <td>{{ item.esito2 }}</td>
+            <td>{{ item.note }}</td>
+            <td>{{ item.esitocolloquio }}</td>
+            <td>{{ item.sito }}</td>
+            <td>{{ item.email }}</td>
             <td>
                 <button class="btn btn-danger">x</button>
             </td>

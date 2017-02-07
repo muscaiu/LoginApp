@@ -5,7 +5,13 @@ angular.module('interviewServices', [])
 
     //Interview.create(newInterview)
     interviewFactory.create = function(newInterview) {
-        return $http.post('/api/interview', newInterview) //newData from dataCtrl
+        return $http.post('/api/interview', newInterview).then(function(data) {
+            console.log(data.data.token);
+        })
+    }
+
+    interviewFactory.getInterviews = function() {
+        return $http.get('/api/getinterviews')
     }
 
     return interviewFactory;

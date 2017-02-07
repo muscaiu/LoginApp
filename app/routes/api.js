@@ -110,38 +110,44 @@ module.exports = function(router) {
         var interview = new Interview()
             // console.log(req.body);
 
+        interview.nr = req.body.nr
+        interview.dataapplicazione = req.body.dataapplicazione
         interview.nomecognome = req.body.nomecognome
         interview.sesso = req.body.sesso
+        interview.eta = req.body.eta
+        interview.tel = req.body.tel
+        interview.esito1 = req.body.esito1
+        interview.esito2 = req.body.esito2
+        interview.note = req.body.note
+        interview.esitocolloquio = req.body.esitocolloquio
+        interview.sito = req.body.sito
         interview.email = req.body.email
 
-        console.log(interview.nomecognome, interview.sesso, interview.email);
+        // if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
+        //     req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
+        //     req.body.email === null || req.body.email === undefined || req.body.email === '') {
+        //     res.json({ success: false, message: 'Empty fields' })
+        // } else {
+        console.log(req.body.nomecognome);
 
-
-        if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
-            req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
-            req.body.email === null || req.body.email === undefined || req.body.email === '') {
-            res.json({ success: false, message: 'Empty fields' })
-        } else {
-            interview.save(function(err) {
-                if (err) { //if user exists in the db or some other error
-                    res.json({ success: false, message: 'exists' })
+        interview.save(function(err) {
+                if (err) {
+                    console.log('save failed');
+                    res.json({ success: false })
                 } else {
-                    res.json({ success: true, message: 'created' })
+                    console.log('save success');
+                    res.json({ success: true })
                 }
             })
-        }
+            //}
+    })
+
+    //http://127.0.0.1:3000/api/getinterviews
+    router.get('/getinterviews', function(req, res) {
+        Interview.find({}, function(err, interviews) {
+            res.send(interviews)
+        })
     })
 
     return router //return whatever the route is
 }
-
-
-
-// jwt.sign({
-//     data: 'foobar'
-// }, 'secret', { expiresIn: '1h' });
-
-// // verify a token symmetric
-// jwt.verify(token, 'shhhhh', function(err, decoded) {
-//   console.log(decoded.foo) // bar
-// });
